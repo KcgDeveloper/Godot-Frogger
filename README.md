@@ -1,4 +1,7 @@
 # Godot-Frogger 
 A Free Version of Godot Frogger to learn from
 
-In project settings set WINDOW -> Width 832 ; Height -> 960
+Project inspired by a Unity version of Frogger by Zigurous
+though I could do that in Godot.
+
+
