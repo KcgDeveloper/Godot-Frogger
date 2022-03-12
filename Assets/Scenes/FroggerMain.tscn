@@ -1,0 +1,498 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://Assets/Scenes/Turtle3.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Scenes/Log3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Scenes/Log4.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Scenes/Log6.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Scenes/Car1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Images/Homes.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/Median.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/HomeFrog.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Scenes/Turtle2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Scenes/Car2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Scenes/Car3.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Scenes/Car4.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Scenes/Car5.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Scenes/Player.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Scripts/FroggerMain.gd" type="Script" id=15]
+[ext_resource path="res://Assets/Scenes/PlayArea.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/Images/FroggerDead.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Fonts/bit5x3.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://Assets/Images/FroggerIdle.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Audio/sound_frogger_time.wav" type="AudioStream" id=20]
+[ext_resource path="res://Assets/Audio/sound_frogger_squash_sel.wav" type="AudioStream" id=21]
+[ext_resource path="res://Assets/Audio/frogger_plop_sound.wav" type="AudioStream" id=22]
+[ext_resource path="res://Assets/Audio/all_homes_musci.wav" type="AudioStream" id=23]
+
+[sub_resource type="DynamicFont" id=10]
+size = 50
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 18 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 416, 152 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 416, 156 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 6 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 6 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 28, 24 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 62
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 44
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 56
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 18 )
+
+[node name="FroggerMain" type="Node"]
+script = ExtResource( 15 )
+
+[node name="TopBar" type="ColorRect" parent="."]
+margin_right = 832.0
+margin_bottom = 100.0
+color = Color( 0, 0, 0.278431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="TopBar"]
+anchor_left = 0.05
+anchor_right = 0.101
+margin_right = 832.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 10 )
+text = "00000"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerLabel" type="Label" parent="TopBar"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -416.0
+margin_right = 416.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 10 )
+text = "30"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LivesLabel" type="Label" parent="TopBar"]
+anchor_left = 0.734
+anchor_right = 0.925
+margin_left = -832.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 10 )
+text = "3"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LivesImage" type="TextureRect" parent="TopBar"]
+margin_left = 770.0
+margin_top = 22.0
+margin_right = 810.0
+margin_bottom = 62.0
+rect_scale = Vector2( 3.4, 3.4 )
+texture = ExtResource( 19 )
+
+[node name="Road" type="ColorRect" parent="."]
+margin_top = 564.0
+margin_right = 832.0
+margin_bottom = 960.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoadArea2D" type="Area2D" parent="Road" groups=["Road"]]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Road/RoadArea2D"]
+position = Vector2( 416, 172 )
+shape = SubResource( 6 )
+
+[node name="Water" type="ColorRect" parent="."]
+margin_top = 110.0
+margin_right = 832.0
+margin_bottom = 530.0
+color = Color( 0, 0, 0.278431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaterArea2D" type="Area2D" parent="Water" groups=["Water"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water/WaterArea2D"]
+position = Vector2( 416, 238 )
+shape = SubResource( 5 )
+
+[node name="StartBank" type="Sprite" parent="."]
+position = Vector2( 416, 928 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 7 )
+
+[node name="SafeArea" type="Area2D" parent="StartBank" groups=["Safe"]]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartBank/SafeArea"]
+scale = Vector2( 10.2, 1 )
+shape = SubResource( 1 )
+
+[node name="MiddleBank" type="Sprite" parent="."]
+position = Vector2( 416, 544 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 7 )
+
+[node name="SafeArea" type="Area2D" parent="MiddleBank" groups=["Safe"]]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleBank/SafeArea"]
+scale = Vector2( 10.2, 1 )
+shape = SubResource( 2 )
+
+[node name="HomeBank" type="Sprite" parent="."]
+position = Vector2( 416, 144 )
+scale = Vector2( 3.45, 4 )
+texture = ExtResource( 6 )
+
+[node name="HomeBankArea2D" type="Area2D" parent="HomeBank" groups=["Obstacle"]]
+collision_layer = 2
+
+[node name="ObstacleArea" type="CollisionPolygon2D" parent="HomeBank/HomeBankArea2D"]
+polygon = PoolVector2Array( -120.58, -12, 120.58, -12, 120.58, 10, 108.986, 10, 108.986, -8, 83.4783, -8, 83.4783, 10, 60.2898, 10, 60.2898, -8, 34.7826, -8, 34.7826, 10, 13.913, 10, 13.913, -8, -13.913, -8, -13.913, 10, -34.7826, 10, -34.7826, -8, -60.2899, -8, -60.2899, 10, -83.4783, 10, -83.4783, -8, -108.986, -8, -108.986, 10, -120.58, 10 )
+
+[node name="HomeArea2D1" type="Area2D" parent="HomeBank" groups=["Home"]]
+position = Vector2( -97, 2 )
+scale = Vector2( 0.289855, 0.25 )
+collision_layer = 32
+
+[node name="HomeArea" type="CollisionShape2D" parent="HomeBank/HomeArea2D1"]
+position = Vector2( 4, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="HomeBank/HomeArea2D1"]
+visible = false
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+offset = Vector2( 1, 1 )
+
+[node name="HomeArea2D2" type="Area2D" parent="HomeBank" groups=["Home"]]
+position = Vector2( -49, 2 )
+scale = Vector2( 0.289855, 0.25 )
+collision_layer = 32
+
+[node name="HomeArea" type="CollisionShape2D" parent="HomeBank/HomeArea2D2"]
+position = Vector2( 4, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="HomeBank/HomeArea2D2"]
+visible = false
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+offset = Vector2( 1, 1 )
+
+[node name="HomeArea2D3" type="Area2D" parent="HomeBank" groups=["Home"]]
+position = Vector2( -1, 2 )
+scale = Vector2( 0.289855, 0.25 )
+collision_layer = 32
+
+[node name="HomeArea" type="CollisionShape2D" parent="HomeBank/HomeArea2D3"]
+position = Vector2( 4, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="HomeBank/HomeArea2D3"]
+visible = false
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+offset = Vector2( 1, 1 )
+
+[node name="HomeArea2D4" type="Area2D" parent="HomeBank" groups=["Home"]]
+position = Vector2( 47, 2 )
+scale = Vector2( 0.289855, 0.25 )
+collision_layer = 32
+
+[node name="HomeArea" type="CollisionShape2D" parent="HomeBank/HomeArea2D4"]
+position = Vector2( 4, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="HomeBank/HomeArea2D4"]
+visible = false
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+offset = Vector2( 1, 1 )
+
+[node name="HomeArea2D5" type="Area2D" parent="HomeBank" groups=["Home"]]
+position = Vector2( 95, 2 )
+scale = Vector2( 0.289855, 0.25 )
+collision_layer = 32
+
+[node name="HomeArea" type="CollisionShape2D" parent="HomeBank/HomeArea2D5"]
+position = Vector2( 4, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="HomeBank/HomeArea2D5"]
+visible = false
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+offset = Vector2( 1, 1 )
+
+[node name="RoadContainer" type="Node" parent="."]
+
+[node name="Car1_1" parent="RoadContainer" instance=ExtResource( 5 )]
+position = Vector2( 96, 864 )
+
+[node name="Car1_2" parent="RoadContainer" instance=ExtResource( 5 )]
+position = Vector2( 352, 864 )
+
+[node name="Car1_3" parent="RoadContainer" instance=ExtResource( 5 )]
+position = Vector2( 608, 864 )
+
+[node name="Car1_4" parent="RoadContainer" instance=ExtResource( 5 )]
+position = Vector2( 864, 864 )
+
+[node name="Car2_1" parent="RoadContainer" instance=ExtResource( 10 )]
+position = Vector2( 160, 800 )
+
+[node name="Car2_2" parent="RoadContainer" instance=ExtResource( 10 )]
+position = Vector2( 416, 800 )
+
+[node name="Car2_3" parent="RoadContainer" instance=ExtResource( 10 )]
+position = Vector2( 672, 800 )
+
+[node name="Car3_1" parent="RoadContainer" instance=ExtResource( 11 )]
+position = Vector2( 160, 736 )
+
+[node name="Car3_2" parent="RoadContainer" instance=ExtResource( 11 )]
+position = Vector2( 416, 736 )
+
+[node name="Car3_3" parent="RoadContainer" instance=ExtResource( 11 )]
+position = Vector2( 672, 736 )
+
+[node name="Car4_1" parent="RoadContainer" instance=ExtResource( 12 )]
+position = Vector2( -32, 672 )
+
+[node name="Car4_2" parent="RoadContainer" instance=ExtResource( 12 )]
+position = Vector2( -192, 672 )
+
+[node name="Car5_1" parent="RoadContainer" instance=ExtResource( 13 )]
+position = Vector2( 224, 608 )
+
+[node name="Car5_2" parent="RoadContainer" instance=ExtResource( 13 )]
+position = Vector2( 544, 608 )
+
+[node name="Car5_3" parent="RoadContainer" instance=ExtResource( 13 )]
+position = Vector2( 864, 608 )
+
+[node name="WaterContainer" type="Node" parent="."]
+
+[node name="Turtle3_1" parent="WaterContainer" instance=ExtResource( 1 )]
+position = Vector2( 32, 480 )
+
+[node name="Turtle3_2" parent="WaterContainer" instance=ExtResource( 1 )]
+position = Vector2( 352, 480 )
+
+[node name="Turtle3_3" parent="WaterContainer" instance=ExtResource( 1 )]
+position = Vector2( 608, 480 )
+
+[node name="Turtle3_4" parent="WaterContainer" instance=ExtResource( 1 )]
+position = Vector2( 928, 480 )
+
+[node name="Log3_1" parent="WaterContainer" instance=ExtResource( 2 )]
+position = Vector2( -32, 416 )
+
+[node name="Log3_2" parent="WaterContainer" instance=ExtResource( 2 )]
+position = Vector2( 224, 416 )
+
+[node name="Log3_3" parent="WaterContainer" instance=ExtResource( 2 )]
+position = Vector2( 544, 416 )
+
+[node name="Log3_4" parent="WaterContainer" instance=ExtResource( 2 )]
+position = Vector2( 864, 416 )
+
+[node name="Log6_1" parent="WaterContainer" instance=ExtResource( 4 )]
+position = Vector2( -256, 352 )
+
+[node name="Log6_2" parent="WaterContainer" instance=ExtResource( 4 )]
+position = Vector2( 288, 352 )
+
+[node name="Log6_3" parent="WaterContainer" instance=ExtResource( 4 )]
+position = Vector2( 832, 352 )
+
+[node name="Turtle2_1" parent="WaterContainer" instance=ExtResource( 9 )]
+position = Vector2( 128, 288 )
+
+[node name="Turtle2_2" parent="WaterContainer" instance=ExtResource( 9 )]
+position = Vector2( 384, 288 )
+
+[node name="Turtle2_3" parent="WaterContainer" instance=ExtResource( 9 )]
+position = Vector2( 640, 288 )
+
+[node name="Turtle2_4" parent="WaterContainer" instance=ExtResource( 9 )]
+position = Vector2( 896, 288 )
+
+[node name="Log4_1" parent="WaterContainer" instance=ExtResource( 3 )]
+position = Vector2( -32, 224 )
+
+[node name="Log4_2" parent="WaterContainer" instance=ExtResource( 3 )]
+position = Vector2( 288, 224 )
+
+[node name="Log4_3" parent="WaterContainer" instance=ExtResource( 3 )]
+position = Vector2( 608, 224 )
+
+[node name="Log4_4" parent="WaterContainer" instance=ExtResource( 3 )]
+position = Vector2( 928, 224 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 23.0
+margin_top = 35.0
+margin_right = 65.0
+margin_bottom = 49.0
+text = "Label1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+margin_left = 213.0
+margin_top = 37.0
+margin_right = 255.0
+margin_bottom = 51.0
+text = "Label2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+margin_left = 406.0
+margin_top = 39.0
+margin_right = 448.0
+margin_bottom = 53.0
+text = "Label3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+margin_left = 669.0
+margin_top = 39.0
+margin_right = 711.0
+margin_bottom = 53.0
+text = "Label3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 14 )]
+
+[node name="PlayArea" parent="." instance=ExtResource( 16 )]
+
+[node name="DeadPlayer" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 4, 3.5 )
+texture = ExtResource( 17 )
+
+[node name="GameOverText" type="Label" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 1.0
+margin_top = 40.0
+margin_right = 1.0
+margin_bottom = 98.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "GAME OVER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayGameText" type="Label" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -62.0
+margin_bottom = 4.0
+custom_fonts/font = SubResource( 8 )
+text = "PRESS 'ENTER' TO PLAY AGAIN"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextLevel" type="Label" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 48.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 9 )
+text = "NEXT LEVEL"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timerWarningSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+
+[node name="squashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+
+[node name="plopSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+
+[node name="all_homes_music_play" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+
+[connection signal="raycast_On" from="." to="Player" method="_on_FroggerMain_raycast_On"]
+[connection signal="area_entered" from="HomeBank/HomeBankArea2D" to="." method="_on_HomeBankArea2D_area_entered"]
+[connection signal="area_entered" from="HomeBank/HomeArea2D1" to="." method="_on_HomeArea2D_area_entered"]
+[connection signal="area_entered" from="HomeBank/HomeArea2D2" to="." method="_on_HomeArea2D_area_entered"]
+[connection signal="area_entered" from="HomeBank/HomeArea2D3" to="." method="_on_HomeArea2D_area_entered"]
+[connection signal="area_entered" from="HomeBank/HomeArea2D4" to="." method="_on_HomeArea2D_area_entered"]
+[connection signal="area_entered" from="HomeBank/HomeArea2D5" to="." method="_on_HomeArea2D_area_entered"]
+[connection signal="is_player_home" from="Player" to="." method="_on_Player_is_player_home"]
+[connection signal="on_water" from="Player" to="." method="_on_Player_on_water"]
+[connection signal="progressScore" from="Player" to="." method="_on_Player_progressScore"]
+[connection signal="run_over" from="Player" to="." method="_on_Player_run_over"]
+[connection signal="area_exited" from="PlayArea" to="." method="_on_PlayArea_area_exited"]

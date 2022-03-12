@@ -1,0 +1,39 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+[application]
+
+config/name="Godot Frogger"
+run/main_scene="res://Assets/Scenes/FroggerMain.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=832
+window/size/height=960
+window/size/resizable=false
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Obstacle"
+2d_physics/layer_3="Platform"
+2d_physics/layer_4="Water"
+2d_physics/layer_5="Safe"
+2d_physics/layer_6="Home"
+2d_physics/layer_7="PlayArea"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/FroggerIdle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Audio/sound_frogger_hop_sel.wav" type="AudioStream" id=3]
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 1.59091
+
+[node name="Player" type="Sprite"]
+position = Vector2( 416, 930 )
+scale = Vector2( 4.4, 4.4 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, 1 )
+script = ExtResource( 1 )
+
+[node name="Player_Area2D" type="Area2D" parent="." groups=["Player"]]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Area2D"]
+shape = SubResource( 7 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 0, 0.454544 )
+enabled = true
+cast_to = Vector2( 0, -2 )
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="jumpAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -0.5
+
+[connection signal="area_entered" from="Player_Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Player_Area2D" to="." method="_on_Area2D_area_exited"]

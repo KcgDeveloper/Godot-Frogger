@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound_frogger_squash_sel.wav-7d0604c850b6c1afb1fac0ee53ac58f3.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/sound_frogger_squash_sel.wav"
+dest_files=[ "res://.import/sound_frogger_squash_sel.wav-7d0604c850b6c1afb1fac0ee53ac58f3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
